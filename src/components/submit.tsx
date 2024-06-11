@@ -106,7 +106,7 @@ export function Submit() {
         {submitted ? (
           <div className="text-center">
             <h2 className="text-2xl font-semibold">Thank You!</h2>
-            <p>Your invoice has been submitted successfully.</p>
+            <p className="mb-4">Your invoice has been submitted successfully.</p>
             <Button onClick={() => setSubmitted(false)}>Submit Another Invoice</Button>
           </div>
         ) : (
