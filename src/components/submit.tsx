@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input"
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select"
 import { Button } from "@/components/ui/button"
 import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell, TableFooter } from "@/components/ui/table"
+import { products } from "@/data/products"
 
 // Hardcoded customer ID
 const hardcodedCustomerID = "12345"
@@ -21,24 +22,6 @@ type InvoiceItem = {
   quantity: number
   total: number
 }
-
-// Updated products data
-const products: InvoiceItem[] = [
-  { id: 3, name: "Concrete", description: "Concrete for fountain installation", price: 0, type: "Service", quantity: 0, total: 0 },
-  { id: 4, name: "Design", description: "Custom Design", price: 75, type: "Service", quantity: 0, total: 0 },
-  { id: 6, name: "Gardening", description: "Weekly Gardening Service", price: 0, type: "Service", quantity: 0, total: 0 },
-  { id: 2, name: "Hours", description: "", price: 0, type: "Service", quantity: 0, total: 0 },
-  { id: 7, name: "Installation", description: "Installation of landscape design", price: 50, type: "Service", quantity: 0, total: 0 },
-  { id: 8, name: "Lighting", description: "Garden Lighting", price: 0, type: "Service", quantity: 0, total: 0 },
-  { id: 9, name: "Maintenance & Repair", description: "Maintenance & Repair", price: 0, type: "Service", quantity: 0, total: 0 },
-  { id: 10, name: "Pest Control", description: "Pest Control Services", price: 35, type: "Service", quantity: 0, total: 0 },
-  { id: 12, name: "Refunds & Allowances", description: "Income due to refunds or allowances", price: 0, type: "Service", quantity: 0, total: 0 },
-  { id: 13, name: "Rocks", description: "Garden Rocks", price: 0, type: "Service", quantity: 0, total: 0 },
-  { id: 1, name: "Services", description: "", price: 0, type: "Service", quantity: 0, total: 0 },
-  { id: 14, name: "Sod", description: "Sod", price: 0, type: "Service", quantity: 0, total: 0 },
-  { id: 15, name: "Soil", description: "2 cubic ft. bag", price: 10, type: "Service", quantity: 0, total: 0 },
-  { id: 18, name: "Trimming", description: "Tree and Shrub Trimming", price: 35, type: "Service", quantity: 0, total: 0 },
-]
 
 export function Submit() {
   const [email, setEmail] = useState("")
@@ -66,6 +49,10 @@ export function Submit() {
       setSelectedProduct(null)
       setQuantity(1)
     }
+  }
+
+  const handleRemoveProduct = (index: number) => {
+    setInvoiceItems(invoiceItems.filter((_, i) => i !== index))
   }
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -162,6 +149,7 @@ export function Submit() {
                           <TableHead>Quantity</TableHead>
                           <TableHead>Price</TableHead>
                           <TableHead>Total</TableHead>
+                          <TableHead>Action</TableHead>
                         </TableRow>
                       </TableHeader>
                       <TableBody>
@@ -171,12 +159,15 @@ export function Submit() {
                             <TableCell>{item.quantity}</TableCell>
                             <TableCell>${item.price.toFixed(2)}</TableCell>
                             <TableCell>${item.total.toFixed(2)}</TableCell>
+                            <TableCell>
+                              <Button type="button" onClick={() => handleRemoveProduct(index)}>Remove</Button>
+                            </TableCell>
                           </TableRow>
                         ))}
                       </TableBody>
                       <TableFooter>
                         <TableRow>
-                          <TableCell colSpan={3} className="text-right font-semibold">
+                          <TableCell colSpan={4} className="text-right font-semibold">
                             Total:
                           </TableCell>
                           <TableCell className="font-semibold">${total.toFixed(2)}</TableCell>
