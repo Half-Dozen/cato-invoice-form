@@ -10,7 +10,7 @@ import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell, TableFoo
 import { products } from "@/data/products"
 
 // Hardcoded customer ID
-const hardcodedCustomerID = "12345"
+const hardcodedCustomerID = "14"
 
 // Define the type for invoice items
 type InvoiceItem = {
