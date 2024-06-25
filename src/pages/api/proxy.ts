@@ -10,7 +10,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         itemsAdded: req.body.itemsAdded || 0, // Default to 0 if not provided
       };
 
-      const response = await fetch('https://cato-supply-automation-system.onrender.com/webhook/2b81b67a-b719-49cc-ac97-560742ec7c53', {
+      const response = await fetch('https://cato-supply-automation-system.onrender.com/webhook-test/2b81b67a-b719-49cc-ac97-560742ec7c53', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
